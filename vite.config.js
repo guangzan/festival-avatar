@@ -8,6 +8,9 @@ export default ({ mode }) => {
 
   return defineConfig({
     // base: __DEV__ ? '/' : 'festival-avatar',
+    build: {
+      outDir: 'docs',
+    },
     plugins: [
       vue(),
       styleImport({
