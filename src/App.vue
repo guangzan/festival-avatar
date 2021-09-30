@@ -29,7 +29,6 @@ const handleSelect = e => {
 }
 
 const handleSave = () => {
-  console.log(selectedId.value)
   if (fileList.value.length === 0) {
     Toast.fail('请先上传头像')
     return
@@ -63,6 +62,10 @@ const handleDelete = () => {
   base64.value = ''
   fileList.value = []
 }
+
+const getImageUrl = name => {
+  return new URL(`./assets/${name}.png`, import.meta.url).href
+}
 </script>
 
 <template>
@@ -85,10 +88,11 @@ const handleDelete = () => {
   <div class="preview-list">
     <div
       class="preview-item"
-      :id="`item-${item}`"
-      v-for="item in 6"
-      @click="handleSelect"
       v-if="fileList.length !== 0"
+      v-for="(num, index) in 6"
+      :id="`item-${num}`"
+      :key="index"
+      @click="handleSelect"
     >
       <img
         class="preview-item__img"
@@ -98,7 +102,7 @@ const handleDelete = () => {
       />
       <img
         class="preview-item__modification"
-        :src="`/src/assets/${item}.png`"
+        :src="getImageUrl(num)"
         alt="avatar"
       />
     </div>

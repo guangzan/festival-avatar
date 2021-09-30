@@ -7,7 +7,7 @@ export default ({ mode }) => {
   const __DEV__ = mode === 'development'
 
   return defineConfig({
-    base: __DEV__ ? '/' : 'festival-avatar',
+    base: __DEV__ ? '/' : '/festival-avatar/',
     build: {
       outDir: 'docs',
     },
