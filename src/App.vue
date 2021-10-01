@@ -41,6 +41,7 @@ const handleSave = () => {
   html2canvas(document.querySelector(`#${selectedId.value}`), {
     scale: 4,
     allowTaint: true,
+    proxy: true,
     dpi: window.devicePixelRatio * 8,
   }).then(canvas => {
     downloadjs(canvas.toDataURL(), '头像.png', 'image/png')
