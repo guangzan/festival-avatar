@@ -3,6 +3,8 @@ import { ref } from 'vue'
 import { Button, Uploader } from 'vant'
 import html2canvas from 'html2canvas'
 import { Toast } from 'vant'
+import downloadjs from 'downloadjs'
+
 import Congratulate from './components/Congratulate.vue'
 import Blessing from './components/Blessing.vue'
 
@@ -41,12 +43,7 @@ const handleSave = () => {
     allowTaint: true,
     dpi: window.devicePixelRatio * 8,
   }).then(canvas => {
-    const url = canvas.toDataURL()
-    const a = document.createElement('a')
-
-    a.download = '头像'
-    a.href = url
-    a.click()
+    downloadjs(canvas.toDataURL(), '头像.png', 'image/png')
 
     downloading.value = false
     Toast.success('保存成功')
