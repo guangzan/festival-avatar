@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue'
-import { Button, Uploader } from 'vant'
+import { Button, Uploader, Toast } from 'vant'
 import html2canvas from 'html2canvas'
-import { Toast } from 'vant'
-import downloadjs from 'downloadjs'
+import { saveAs } from 'file-saver'
+// import downloadjs from 'downloadjs'
 
 import Congratulate from './components/Congratulate.vue'
 import Blessing from './components/Blessing.vue'
@@ -43,7 +43,14 @@ const handleSave = () => {
     allowTaint: true,
     dpi: window.devicePixelRatio * 8,
   }).then(canvas => {
-    downloadjs(canvas.toDataURL(), '头像.png', 'image/png')
+    // downloadjs(canvas.toDataURL(), '头像.png', 'image/png')
+    saveAs(canvas.toDataURL(), 'image.jpg')
+
+    // const dataUrl = canvas.toDataURL()
+    // const a = document.createElement('a')
+    // a.download = 'avatar.png'
+    // a.href = dataUrl
+    // a.click()
 
     downloading.value = false
     Toast.success('保存成功')
