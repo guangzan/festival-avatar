@@ -45,7 +45,7 @@ const handleSave = () => {
     dpi: window.devicePixelRatio * 8,
   }).then(canvas => {
     // downloadjs(canvas.toDataURL(), '头像.png', 'image/png')
-    saveAs(canvas.toDataURL(), 'image.jpg')
+    saveAs(canvas.toDataURL(), `avatar${new Date().getTime()}.jpg`)
 
     // const dataUrl = canvas.toDataURL()
     // const a = document.createElement('a')
