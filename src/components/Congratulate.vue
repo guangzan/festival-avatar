@@ -247,7 +247,6 @@ $colors: (#d13447, #ffbf00, #263672);
     opacity: random() + 0.5;
     transform: rotate(#{random() * 360}deg);
     animation: drop-#{$i} unquote(4 + random() + 's') unquote(random() + 's');
-    /* infinite; */
   }
 
   @keyframes drop-#{$i} {

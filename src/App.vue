@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { Button, Uploader, Toast } from 'vant'
 import html2canvas from 'html2canvas'
 import { saveAs } from 'file-saver'
+import { Icon } from 'vant'
 // import downloadjs from 'downloadjs'
 
 import Congratulate from './components/Congratulate.vue'
@@ -27,7 +28,7 @@ const buildBase64 = file => {
 
 const handleSelect = e => {
   selectedId.value = e.currentTarget.id
-  Toast.success('选择成功')
+  // Toast.success('选择成功')
 }
 
 const handleSave = () => {
@@ -109,6 +110,13 @@ const getImageUrl = name => {
         :src="getImageUrl(num)"
         alt="avatar"
       />
+      <Icon
+        name="arrow-down"
+        color="#FFD661"
+        class="icon-active"
+        size="30"
+        v-show="selectedId.slice(-1) === (index += 1).toString()"
+      />
     </div>
   </div>
 
@@ -173,15 +181,18 @@ body {
 
 #item-1,
 #item-6 {
-  border: 4px solid #fff;
   border-radius: 6px;
+  img {
+    border: 4px solid #fff;
+    border-radius: 6px;
+  }
 }
 
 .preview-list {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(3, 1fr);
-  row-gap: 14px;
+  row-gap: 26px;
   column-gap: 8px;
   margin: 40px 0 60px;
 }
@@ -192,7 +203,6 @@ body {
   width: 100px;
   height: 100px;
   background-color: #fff;
-  overflow: hidden;
   img {
     display: block;
     position: absolute;
@@ -202,6 +212,11 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+  }
+  .icon-active {
+    position: absolute;
+    top: -28px;
+    left: 33px;
   }
 }
 </style>
